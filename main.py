@@ -28,7 +28,7 @@ async def run():
 class Bot(commands.Bot):
     def __init__(self, **kwargs):
         super().__init__(
-            command_prefix= ["-"],
+            command_prefix= ["!"],
             description=kwargs.pop('description')
         )
         self.start_time = None
@@ -38,7 +38,7 @@ class Bot(commands.Bot):
         self.loop.create_task(self.load_all_extensions())
 
     async def status_task(self):
-        await self.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name="-help"))
+        await self.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="the tickets!"))
 
     async def track_start(self):
         await self.wait_until_ready()
