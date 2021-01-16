@@ -46,13 +46,5 @@ class Administration(commands.Cog):
         await message.add_reaction("1️⃣")
         await message.add_reaction("2️⃣")
 
-    @commands.command()
-    async def how2review(self,ctx):
-        embed=discord.Embed(title=f"How to submit a review.", description=f"To leave a review for your freelancer, you can use `!review`.", color=0xFBF514)
-        embed.add_field(name=f"__Format:__", value=f"**!review <@Freelancer> <1-10> <Review Message>**", inline=False)
-        embed.add_field(name=f"__Here is an example:__", value=f"**!review <@590651977034366976> 10 They did a great job!**", inline=True)
-        embed.set_footer(text=f"Lemon Studios")
-        await ctx.send(embed=embed)
-
 def setup(bot):
     bot.add_cog(Administration(bot))
