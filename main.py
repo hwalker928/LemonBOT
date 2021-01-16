@@ -5,22 +5,18 @@ from datetime import datetime as dt
 import logging
 import sqlite3
 from pathlib import Path
-
 import discord
 from discord.ext import commands
-
-
-
-
 
 async def run():
     intents = discord.Intents.default()
     intents.members = True
     bot = Bot(description="a", intents=intents)
+    with open('config.json') as bot.config_jsonfile:
+        bot.config_json = json.load(bot.config_jsonfile)
     bot.remove_command("help")
-
     try:
-        await bot.start("Nzc3MjA2NjEwMzc5NTM4NDYy.X7AEDw.cIyrAV4M9CVt_A2u-VUhOeTS6js")
+        await bot.start(bot.config_json["token"])
     except KeyboardInterrupt:
         await bot.logout()
 
@@ -28,7 +24,7 @@ async def run():
 class Bot(commands.Bot):
     def __init__(self, **kwargs):
         super().__init__(
-            command_prefix= ["!"],
+            command_prefix= "!",
             description=kwargs.pop('description')
         )
         self.start_time = None
@@ -44,10 +40,10 @@ class Bot(commands.Bot):
         await self.wait_until_ready()
         self.start_time = datetime.datetime.utcnow()
 
-
     async def load_all_extensions(self):
         await self.wait_until_ready()
         await asyncio.sleep(1)
+        self.load_extension('jishaku')
         cogs = [x.stem for x in Path('cogs').glob('*.py')]
         for extension in cogs:
             try:
@@ -67,7 +63,6 @@ class Bot(commands.Bot):
         print('-' * 10)
         self.launch_time = dt.utcnow()
         self.loop.create_task(self.status_task())
-
 
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO)
