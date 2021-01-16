@@ -1,4 +1,3 @@
-
-*.txt
-*.pyc
-config.json
+/node_modules/
+/.idea/
+/botDatabase.db
