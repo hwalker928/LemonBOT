@@ -46,5 +46,9 @@ class Administration(commands.Cog):
         await message.add_reaction("1️⃣")
         await message.add_reaction("2️⃣")
 
+    @commands.command(aliases=["os", "code", "github"])
+    async def source(self,ctx):
+        await ctx.send("<https://github.com/hwalker928/LemonBOT>")
+
 def setup(bot):
     bot.add_cog(Administration(bot))
