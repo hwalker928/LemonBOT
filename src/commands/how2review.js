@@ -3,7 +3,7 @@ const { MessageEmbed } = require('discord.js')
 module.exports = {
   meta: {
     help: 'A guide on how to leave a review',
-    level: Infinity,
+    level: 1,
     doNotDocument: true
   },
   exec: async (msg, suffix) => {
