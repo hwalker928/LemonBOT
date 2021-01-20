@@ -41,10 +41,10 @@ async function helpingHand (user, context, cmd) {
         if (c.meta.nsfw) result.push('**This command is NSFW**')
         if (c.meta.addons) result.push(c.meta.addons)
         if (context.guild) {
-            context.send('Please check your DMs!')
+            context.createMessage('Please check your DMs!')
             context = await global.bot.users.cache.get(user).dmChannel
         }
-        context.send(result.join('\n'))
+        context.createMessage(result.join('\n'))
     } else if (!cmd) {
         const categories = new Set(Object.values(commands).map(x => x.meta.module).sort())
         const names = Object.getOwnPropertyNames(commands)
@@ -63,15 +63,15 @@ async function helpingHand (user, context, cmd) {
             })
         }
         if (context.guild) {
-            context.send('Please check your DMs!')
-            context = await global.bot.users.cache.get(user) // reassign context to be a dm channel
+            context.createMessage('Please check your DMs!')
+            context = await global.bot.users.get(user).getDMChannel() // reassign context to be a dm channel
         }
         for (const x in result) {
-            context.send(`\`\`\`ini\n${result[x].join('\n')}\n\`\`\``)
+            context.createMessage(`\`\`\`ini\n${result[x].join('\n')}\n\`\`\``)
         }
-        // context.send(misc.join('\n'))
+        // context.createMessage(misc.join('\n'))
     } else {
-        return context.send(`No command called \`${cmd}\` registered.`)
+        return context.createMessage(`No command called \`${cmd}\` registered.`)
     }
 }
 
