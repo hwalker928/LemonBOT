@@ -33,18 +33,8 @@ module.exports = {
         if (settings && available[settings.language]) channel.createMessage(strings.map(v => transform(available[settings.language][v._key], v.opts)).join('\n'))
         else channel.createMessage(strings.map(v => transform(available[standard][v._key], v.opts)).join('\n'))
     }
-  },
-  multiSend: async (strings, channel) => {
-    const requested = strings.map(v => v._key)
-    for (const v of requested) {
-      if (!available[standard][v]) return global.logger.error(`Missing i18n key ${v} from standard language file!`)
-    }
-    let settings
-    if (channel.guild) settings = await driver.getSettings(channel.guild)
-    if (settings && available[settings.language]) channel.send(strings.map(v => transform(available[settings.language][v._key], v.opts)).join('\n'))
-    else channel.send(strings.map(v => transform(available[standard][v._key], v.opts)).join('\n'))
-  }
 }
+
 
 function transform (string, opts) {
   for (const x in opts) {
