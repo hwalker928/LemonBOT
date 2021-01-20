@@ -64,7 +64,5 @@ module.exports = async (ctx) => {
                 }
             } else if (res !== null) return global.i18n.send('NO_PERMS', msg.channel)
         }
-      } else if (res !== null) return global.i18n.send('NO_PERMS', msg.channel)
-    }
-  }
+    } else if (res !== null) return global.i18n.send('NO_PERMS', msg.channel)
 }
