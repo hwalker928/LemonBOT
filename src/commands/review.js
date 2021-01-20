@@ -59,4 +59,16 @@ module.exports = {
             .sendable
         bot.createMessage('800118820525441074', { embed: embed })
     }
+    const embed = new MessageEmbed()
+      .setColor(0xFBF514)
+      .addFields(
+        { name: 'Review', value: review, inline: false },
+        { name: 'Freelancer', value: freelancer, inline: false },
+        { name: 'Customer', value: customer, inline: false },
+        { name: 'Rating', value: rating, inline: false }
+      )
+      .setFooter(time)
+      // eslint-disable-next-line no-undef
+    bot.channels.cache.get('775659716142694430').send(embed)
+  }
 }

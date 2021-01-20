@@ -2,11 +2,11 @@ const commands = require('../internals/command-indexer').commands
 const aliases = require('../internals/command-indexer').alias
 const help = require('../internals/command-indexer').help
 const engines = {
-    perms: require('../features/permissions'),
-    settings: require('../features/settings'),
-    timeout: require('../features/timeouts'),
-    blockade: require('../features/blocking'),
-    flags: require('../features/flags')
+  perms: require('../features/permissions'),
+  settings: require('../features/settings'),
+  timeout: require('../features/timeouts'),
+  blockade: require('../features/blocking'),
+  flags: require('../features/flags')
 }
 const masters = process.env.GAMEMASTER.split('|')
 
@@ -64,5 +64,7 @@ module.exports = async (ctx) => {
                 }
             } else if (res !== null) return global.i18n.send('NO_PERMS', msg.channel)
         }
+      } else if (res !== null) return global.i18n.send('NO_PERMS', msg.channel)
     }
+  }
 }

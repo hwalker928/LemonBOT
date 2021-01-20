@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 const { MessageEmbed } = require('discord.js')
 
 module.exports = {
