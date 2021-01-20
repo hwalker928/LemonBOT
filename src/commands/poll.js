@@ -1,20 +1,22 @@
-const { MessageEmbed } = require('discord.js')
-
 module.exports = {
-  meta: {
-    help: 'Create a poll',
-    level: Infinity,
-    doNotDocument: true
-  },
-  exec: async (msg, suffix) => {
-    const embed = new MessageEmbed()
-      .setTitle('A new poll has been started :tada:')
-      .setDescription(`:one: ${suffix.replace(new RegExp(/(")([^"]+)(")( )(")([^"]+)(")/gm), '$2')}
+    meta: {
+        help: "Create a poll",
+        level: Infinity,
+        doNotDocument: true
+    },
+    exec: async (msg, suffix) => {
+        const embed = msg.channel.createEmbed()
+            .title('A new poll has been started :tada:')
+            .description(`:one: ${suffix.replace(new RegExp(/(")([^"]+)(")( )(")([^"]+)(")/gm), '$2')}
             :two: ${suffix.replace(new RegExp(/(")([^"]+)(")( )(")([^"]+)(")/gm), '$6')}`)
-      .setFooter(`Lemon Studios • Poll created by ${msg.author.username}`)
-      .setColor(0xFBF514)
-    const mmsg = await msg.channel.send(embed)
-    mmsg.react('1️⃣')
-      .then(() => mmsg.react('2️⃣'))
-  }
+            .footer(`Lemon Studios • Poll created by ${msg.author.username}`)
+            .color(0xFBF514)
+            .sendable
+        /*eslint-disable*/
+        const _msg = await msg.channel.createMessage({ embed: embed})
+        bot.getMessage(msg.channel.id, _msg.id)
+            .then(() => _msg.addReaction('1️⃣'))
+            .then(() => _msg.addReaction('2️⃣'))
+        /*eslint-enable*/
+    }
 }

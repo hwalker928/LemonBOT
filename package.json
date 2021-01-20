@@ -23,10 +23,13 @@
     "mocha": "^8.2.1"
   },
   "dependencies": {
-    "discord.js": "^12.5.1",
-    "dotenv": "^8.2.0",
     "chalk": "^4.1.0",
+    "dotenv": "^8.2.0",
+    "eris": "^0.14.0",
+    "eris-embed-builder": "^0.1.2",
+    "helperis": "^1.2.4",
     "lokijs": "^1.5.11",
-    "moment": "^2.29.1"
+    "moment": "^2.29.1",
+    "node-fetch": "^2.6.1"
   }
 }

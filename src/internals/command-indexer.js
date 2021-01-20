@@ -33,16 +33,45 @@ async function helpingHand (user, context, cmd) {
             '```',
             `Minimum access level required: ${c.meta.level}`,
             ''
-    ]
-    if (c.meta.permAddons) result.push(`**This command requires the following extra permissions \`${c.meta.permAddons.join(', ')}\`**`)
-    if (c.meta.module) result.push(`*This command is part of the \`${c.meta.module}\` module*`)
-    if (c.meta.aliases && c.meta.aliases.length > 0) result.push(`**Aliases for this command:** ${c.meta.aliases.join(', ')}`)
-    if (c.meta.timeout) result.push(`**This command has a timeout of ${c.meta.timeout} seconds**`)
-    if (c.meta.nsfw) result.push('**This command is NSFW**')
-    if (c.meta.addons) result.push(c.meta.addons)
-    if (context.guild) {
-      context.send('Please check your DMs!')
-      context = await global.bot.users.cache.get(user).dmChannel
+        ]
+        if (c.meta.permAddons) result.push(`**This command requires the following extra permissions \`${c.meta.permAddons.join(', ')}\`**`)
+        if (c.meta.module) result.push(`*This command is part of the \`${c.meta.module}\` module*`)
+        if (c.meta.aliases && c.meta.aliases.length > 0) result.push(`**Aliases for this command:** ${c.meta.aliases.join(', ')}`)
+        if (c.meta.timeout) result.push(`**This command has a timeout of ${c.meta.timeout} seconds**`)
+        if (c.meta.nsfw) result.push('**This command is NSFW**')
+        if (c.meta.addons) result.push(c.meta.addons)
+        if (context.guild) {
+            context.send('Please check your DMs!')
+            context = await global.bot.users.cache.get(user).dmChannel
+        }
+        context.send(result.join('\n'))
+    } else if (!cmd) {
+        const categories = new Set(Object.values(commands).map(x => x.meta.module).sort())
+        const names = Object.getOwnPropertyNames(commands)
+        const res = {}
+        categories.forEach(cat => {
+            const values = Object.values(commands).filter(y => y.meta.module === cat && y.meta.level !== Infinity)
+            res[cat] = values.map(x => `${names.find(f => commands[f] === x)} = "${x.meta.help}"`).sort()
+        })
+        const result = [['[[Available Commands]]']]
+        for (const x in res) {
+            if (!(result[result.length - 1].join('\n').length > 1750)) result[result.length - 1].push(`\n[${(x === 'undefined') ? 'Uncategorised' : x}]`)
+            else result[result.length] = [`\n[${(x === 'undefined') ? 'Uncategorized' : x}]`]
+            res[x].forEach(rep => {
+                if (!(result[result.length - 1].join('\n').length > 1750)) result[result.length - 1].push(rep)
+                else result[result.length] = [rep]
+            })
+        }
+        if (context.guild) {
+            context.send('Please check your DMs!')
+            context = await global.bot.users.cache.get(user) // reassign context to be a dm channel
+        }
+        for (const x in result) {
+            context.send(`\`\`\`ini\n${result[x].join('\n')}\n\`\`\``)
+        }
+        // context.send(misc.join('\n'))
+    } else {
+        return context.send(`No command called \`${cmd}\` registered.`)
     }
     context.send(result.join('\n'))
   } else if (!cmd) {
