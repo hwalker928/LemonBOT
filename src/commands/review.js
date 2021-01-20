@@ -36,7 +36,7 @@ module.exports = {
         const freelancer = msg.mentions[0]
         const customer = msg.author.mention
         let review = suffix.replace(`<@!${msg.mentions[0].id}> `,"").split(" ")[0].match(/(10|[1-9])/gm) ? suffix.replace(`<@!${msg.mentions[0].id}> `,"").split(" ")[0] : "No Rating Left"
-        if(parseInt(review) >= 10) {
+        if(parseInt(review) >= 5) {
             review = 5
         }
         if(parseInt(review) < 0){
@@ -57,6 +57,6 @@ module.exports = {
             .color(0xFBF514)
             .footer(time)
             .sendable
-        bot.createMessage('800118820525441074', { embed: embed })
+        bot.createMessage(process.env.REVIEW_CHANNEL, { embed: embed })
     }
 }

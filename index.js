@@ -4,6 +4,8 @@ global.logger = require('./src/internals/logger')
 
 global.i18n = require('./src/internals/i18n')
 
+require('./src/internals/env_check')
+
 global.logger.log('Beginning startup...')
 
 require('eris-embed-builder')
