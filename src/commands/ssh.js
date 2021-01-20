@@ -12,7 +12,7 @@ module.exports = {
       return msg.channel.send('No Command')
     }
 
-    const m = await msg.channel.createMessage('<a:loading:788845427072040991> Computing...')
+    const m = await msg.channel.createMessage('<a:loading:801454835177619495> Computing...')
     const start = Date.now()
 
     exec(cmd, async (e, out, err) => {
@@ -24,7 +24,7 @@ module.exports = {
         //   m.edit(`Result too long for Discord: <https://haste.powercord.dev/${res.key}.txt>\nTook ${processing} seconds.`)
         m.edit(`Result too long for Discord\nTook ${processing} seconds.`)
       } else {
-        m.edit(`\`\`\`\n${result}\n\`\`\`\nTook ${processing} seconds.`)
+        m.edit(`\`\`\`shell\n${result}\n\`\`\`\nTook ${processing} seconds.`)
       }
     })
   }
