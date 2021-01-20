@@ -1,5 +1,3 @@
-const { MessageEmbed } = require('discord.js')
-
 module.exports = {
     meta: {
         help: "soon:tm:",
