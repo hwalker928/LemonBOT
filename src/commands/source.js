@@ -7,11 +7,9 @@ module.exports = {
     exec: async (msg, suffix) => {
         const embed = msg.channel.createEmbed()
             .title('LemonBOT Code')
-            .thumbnail("https://github.com/hwalker928")
+            .thumbnail("https://avatars1.githubusercontent.com/u/63236817")
             .description("[My Code](https://github.com/hwalker928/lemonBOT), written in NodeJS")
-            .fields(
-                { name: "Contributors", value: "[Jpuf0](https://github.com/Jpuf0)" }
-            )
+            .field("Contributors", "[Jpuf0](https://github.com/Jpuf0)")
             .footer(`Lemon Studios • Requested by ${msg.author.username}`)
             .color(0xFBF514)
             .send()

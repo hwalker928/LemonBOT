@@ -8,10 +8,8 @@ module.exports = {
         const embed = msg.channel.createEmbed()
             .title('How to submit a review.')
             .description('To leave a review for your freelancer, you can use `!review`.')
-            .fields(
-                { name: '__Format:__', value:'**!review <@Freelancer> <1-5> <Review Message>**'},
-                { name: '__Here is an example:__', value:'**!review <@590651977034366976> 5 They did a great job!**'}
-            )
+            .field('__Format:__', '**!review <@Freelancer> <1-5> <Review Message>**')
+            .field('__Here is an example:__', '**!review <@590651977034366976> 5 They did a great job!**')
             .footer('Lemon Studios Review System')
             .color(0xFBF514)
             .send()
