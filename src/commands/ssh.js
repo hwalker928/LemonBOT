@@ -12,7 +12,7 @@ module.exports = {
       return msg.channel.send('No Command')
     }
 
-    const m = await msg.channel.send('<a:loading:788845427072040991> Computing...')
+    const m = await msg.channel.createMessage('<a:loading:788845427072040991> Computing...')
     const start = Date.now()
 
     exec(cmd, async (e, out, err) => {

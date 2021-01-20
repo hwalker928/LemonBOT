@@ -69,7 +69,7 @@ async function helpingHand (user, context, cmd) {
         for (const x in result) {
             context.send(`\`\`\`ini\n${result[x].join('\n')}\n\`\`\``)
         }
-        context.send(misc.join('\n'))
+        // context.send(misc.join('\n'))
     } else {
         return context.send(`No command called \`${cmd}\` registered.`)
     }

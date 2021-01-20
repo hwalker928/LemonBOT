@@ -9,12 +9,11 @@ const engines = {
     flags: require('../features/flags')
 }
 const masters = process.env.GAMEMASTER.split('|')
-const perms = require('discord.js').Permissions
+
 module.exports = async (ctx) => {
-    const msg = ctx
+    const msg = ctx[0]
     if (msg.author.bot) return
-    // if (msg.channel.guild && !msg.channel.permissionsOf (global.bot.user.id).has('sendMessages')) return
-    if (msg.channel.guild && !msg.channel.permissionsFor(global.bot.user.id).has(perms.FLAGS.SEND_MESSAGES)) return
+    if (msg.channel.guild && !msg.channel.permissionsOf(global.bot.user.id).has('sendMessages')) return
     if (msg.channel.guild) {
         if (await engines.flags.has('GuildBlacklisted', msg.channel.guild)) {
             global.logger.debug('Detected guild blacklist, leaving')
@@ -28,7 +27,7 @@ module.exports = async (ctx) => {
         const suffix = msg.content.substr(prefix.length).split(' ').slice(1).join(' ')
         if (cmd === 'help') return help(msg.author.id, msg.channel, suffix)
         if (commands[cmd]) {
-            const blocks = await engines.blockade.blacklist(ctx.channel)
+            const blocks = await engines.blockade.blacklist(ctx[0].channel)
             if (blocks.deny.includes(cmd) || (blocks.deny.includes('all') && !blocks.allow.includes(cmd))) return global.i18n.send('CMD_DISABLED_CHANNEL', msg.channel)
             if (commands[cmd].meta.module !== undefined) {
                 const mod = commands[cmd].meta.module.toLowerCase()

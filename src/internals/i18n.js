@@ -12,9 +12,9 @@ module.exports = {
     send: async (key, channel, opts) => {
         let settings
         if (channel.guild) settings = await driver.getSettings(channel.guild)
-        if (settings && available[settings.lanuage] && available[settings.lanuage][key]) return channel.send(transform(available[settings.lanuage][key], opts))
+        if (settings && available[settings.lanuage] && available[settings.lanuage][key]) return channel.createMessage(transform(available[settings.lanuage][key], opts))
         else if (!available[standard][key]) return global.logger.error(`Missing i18n key ${key} from standard language file!`)
-        else return channel.send(transform(available[standard][key], opts))
+        else return channel.createMessage(transform(available[standard][key], opts))
     },
     multiRaw: async (strings, language) => {
         if (language && available[language]) {
@@ -30,8 +30,8 @@ module.exports = {
         }
         let settings
         if (channel.guild) settings = await driver.getSettings(channel.guild)
-        if (settings && available[settings.language]) channel.send(strings.map(v => transform(available[settings.language][v._key], v.opts)).join('\n'))
-        else channel.send(strings.map(v => transform(available[standard][v._key], v.opts)).join('\n'))
+        if (settings && available[settings.language]) channel.createMessage(strings.map(v => transform(available[settings.language][v._key], v.opts)).join('\n'))
+        else channel.createMessage(strings.map(v => transform(available[standard][v._key], v.opts)).join('\n'))
     }
 }
 
