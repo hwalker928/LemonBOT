@@ -7,7 +7,7 @@ module.exports = {
     exec: async (msg, suffix) => {
         const embed = msg.channel.createEmbed()
             .title('How to submit a review.')
-            .description('To leave a review for your freelancer, you can use `!review`')
+            .description('To leave a review for your freelancer, you can use `!review`.')
             .fields(
                 { name: '__Format:__', value:'**!review <@Freelancer> <1-5> <Review Message>**'},
                 { name: '__Here is an example:__', value:'**!review <@590651977034366976> 5 They did a great job!**'}
