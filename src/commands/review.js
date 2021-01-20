@@ -45,7 +45,7 @@ module.exports = {
         const comment = suffix.replace(`<@!${msg.mentions[0].id}>`,"").replace(/(10|[1-9])/gm, "")
         global.logger.log(suffix)
         const time = moment().format('l')
-        if(!msg.channel.guild.members.find(user => user.id === freelancer.id).roles.includes(msg.channel.guild.roles.find(role => role.id === '800727344066723840').id)) {
+        if(!msg.channel.guild.members.find(user => user.id === freelancer.id).roles.includes(msg.channel.guild.roles.find(role => role.id === '775396028249669633').id)) {
             msg.channel.createMessage('That user isn\'t a freelancer!')
             return
         }

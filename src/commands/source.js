@@ -6,14 +6,14 @@ module.exports = {
     },
     exec: (msg, suffix) => {
         const embed = msg.channel.createEmbed()
-            .setTitle('My Source Code')
-            .setThumbnail("Https://github.com/hwalker928")
-            .setDescription("[My Source Code](https://github.com/hwalker928/lemonBOT), written in NodeJS")
-            .addFields(
+            .title('My Source Code')
+            .thumbnail("Https://github.com/hwalker928")
+            .description("[My Source Code](https://github.com/hwalker928/lemonBOT), written in NodeJS")
+            .fields(
                 { name: "Contributors", value: "[Jpuf0](https://github.com/Jpuf0)"}
             )
-            .setFooter(`Lemon Studios • Requested by ${msg.author.username}`)
-            .setColor(0xFBF514)
-        msg.channel.send(embed)
+            .footer(`Lemon Studios • Requested by ${msg.author.username}`)
+            .color(0xFBF514)
+            .send()
     }
 }
