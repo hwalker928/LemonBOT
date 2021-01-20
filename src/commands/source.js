@@ -9,7 +9,7 @@ module.exports = {
             .title('My Source Code')
             .thumbnail("Https://github.com/hwalker928")
             .description("[My Source Code](https://github.com/hwalker928/lemonBOT), written in NodeJS")
-            .fields(
+            .field(
                 { name: "Contributors", value: "[Jpuf0](https://github.com/Jpuf0)"}
             )
             .footer(`Lemon Studios • Requested by ${msg.author.username}`)
