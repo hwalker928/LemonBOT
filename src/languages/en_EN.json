@@ -5,7 +5,7 @@
   "NO_DM": "This command cannot be used in Direct Messages.",
   "COOLDOWN": "This command is on cooldown for another {time} seconds.",
   "NO_PERMS": "You have no permission to run this command.",
-  "COMMAND_ERROR": "Something went wrong while running this command, if you see my owner, show them this: ```\n{message}\n```",
+  "COMMAND_ERROR": "Something went wrong while running this command, if you see my owner, show them this: ```\nmessage\n```",
   "SETTINGS_ALL_INTRO": "These are the current settings for this server:",
   "SETTINGS_NOT_WHITELISTED": "You cannot edit that.",
   "SETTINGS_SINGLE_NOT_SET": "There's currently nothing set for {setting}.",
